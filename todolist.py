@@ -7,6 +7,14 @@ class ToDoList:
     def add_task(self, task):
         self.tasks.append({"task": task, "completed": False})
         print(f"Added task: '{task}'")
+    
+    # delete_task method
+    def delete_task(self, task_number):
+        if 0 <= task_number < len(self.tasks):
+            task = self.tasks.pop(task_number)
+            print(f"Task '{task['task']}' deleted.")
+        else:
+            print("Invalid task number.")
 
     def complete_task(self, task_number):
         if 0 <= task_number < len(self.tasks):
@@ -27,7 +35,7 @@ def main():
     todo_list = ToDoList()
     
     while True:
-        print("\n1. Add Task\n2. Show Tasks\n3. Mark Task as Complete\n4. Exit")
+        print("\n1. Add Task\n2. Show Tasks\n3. Delete Task\n4. Mark Task as Complete\n5. Exit")
         choice = input("Choose an option: ")
 
         if choice == '1':
@@ -35,11 +43,15 @@ def main():
             todo_list.add_task(task)
         elif choice == '2':
             todo_list.show_tasks()
-        elif choice == '3':
+        elif choice == '3': #delete task
+            todo_list.show_tasks()
+            task_num = int(input("Enter the task number to delete: ")) - 1
+            todo_list.delete_task(task_num)
+        elif choice == '4':
             todo_list.show_tasks()
             task_num = int(input("Enter the task number to mark as complete: ")) - 1
             todo_list.complete_task(task_num)
-        elif choice == '4':
+        elif choice == '5':
             print("Goodbye!")
             break
         else:
