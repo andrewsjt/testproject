@@ -22,7 +22,14 @@ class ToDoList:
             print(f"Task '{self.tasks[task_number]['task']}' marked as complete.")
         else:
             print("Invalid task number.")
-    
+
+    def delete_task(self, task_number):
+        if 0 <= task_number < len(self.tasks):
+            removed_task = self.tasks.pop(task_number)
+            print(f"Task '{removed_task['task']}' has been deleted.")
+        else:
+            print("Invalid task number.")
+
     def show_tasks(self):
         if not self.tasks:
             print("No tasks in your to-do list.")
@@ -35,7 +42,7 @@ def main():
     todo_list = ToDoList()
     
     while True:
-        print("\n1. Add Task\n2. Show Tasks\n3. Delete Task\n4. Mark Task as Complete\n5. Exit")
+
         choice = input("Choose an option: ")
 
         if choice == '1':
@@ -51,6 +58,7 @@ def main():
             todo_list.show_tasks()
             task_num = int(input("Enter the task number to mark as complete: ")) - 1
             todo_list.complete_task(task_num)
+
         elif choice == '5':
             print("Goodbye!")
             break
@@ -59,3 +67,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+a
